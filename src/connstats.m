@@ -29,7 +29,7 @@ C = readtable(matrix_csv,'ReadRowNames',true);
 
 % We will exclude PostCereb_L and PostCereb_R from DMN before calculations
 if remove_cerebellum
-    warning('Removing DMN PostCereb regions from calculation')
+    disp('NOTE: Removing DMN PostCereb regions from calculation')
     keeps = ~contains(C.Properties.VariableNames,'DMN_PostCereb');
     C = C(keeps,keeps);
 end
@@ -59,6 +59,8 @@ end
 
 %% Mean connectivity within and between Raichle 2011 networks
 networks = unique(rois.network);
+disp('Networks found:')
+disp(networks)
 result = table();
 ct = 0;
 
